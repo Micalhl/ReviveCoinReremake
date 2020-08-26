@@ -11,6 +11,7 @@ import cn.galaxy233.revivecoinreremake.utils.Storage;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.serverct.parrot.parrotx.PPlugin;
 import org.serverct.parrot.parrotx.hooks.VaultUtil;
 import org.serverct.parrot.parrotx.utils.I18n;
@@ -22,7 +23,6 @@ public final class ReviveCoinReremake extends PPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
         super.onEnable();
     }
 
@@ -35,8 +35,11 @@ public final class ReviveCoinReremake extends PPlugin {
     protected void load() {
         getLogger().info("正在加载ReviveCoinReremake, 版本" + getDescription().getVersion());
 
-        //Placeholders.hook();
-        new PlaceholderHook(this).register();
+        Plugin papi = getServer().getPluginManager().getPlugin("PlaceholderAPI");
+        if (papi != null) {
+            new PlaceholderHook(this).register();
+        }
+
         vaultUtil = new VaultUtil(this, true);
         registerCommand(new ReviveCoinCommand(this, "revivecoin"));
         listen(pluginManager -> {
@@ -61,9 +64,11 @@ public final class ReviveCoinReremake extends PPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
-        //Placeholders.unhook();
-        new PlaceholderHook(this).unregister();
+        Plugin papi = getServer().getPluginManager().getPlugin("PlaceholderAPI");
+        if (papi != null) {
+            new PlaceholderHook(this).unregister();
+        }
+
         getLogger().info("插件已卸载");
     }
 }
