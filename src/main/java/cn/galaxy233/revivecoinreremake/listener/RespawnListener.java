@@ -82,8 +82,6 @@ public class RespawnListener implements Listener {
         } else {
 
             ReviveCoin.getReviveCoin().take(user, 1);
-            ReviveCoinReduceEvent reviveCoinReduceEvent = new ReviveCoinReduceEvent(event.getPlayer());
-            Bukkit.getPluginManager().callEvent(reviveCoinReduceEvent);
 
             new BukkitRunnable() {
 

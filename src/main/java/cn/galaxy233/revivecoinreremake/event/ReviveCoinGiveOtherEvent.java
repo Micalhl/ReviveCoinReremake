@@ -8,15 +8,17 @@ import org.bukkit.event.HandlerList;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ReviveCoinReduceEvent extends Event {
+public class ReviveCoinGiveOtherEvent extends Event {
 
     private static final HandlerList handlerList = new HandlerList();
 
-    private Player player;
+    private Player user1;
+    private Player user2;
     private int coins;
 
-    public ReviveCoinReduceEvent(Player who, int coins) {
-        this.player = who;
+    public ReviveCoinGiveOtherEvent(Player user1, Player user2, int coins) {
+        this.user1 = user1;
+        this.user2 = user2;
         this.coins = coins;
     }
 
