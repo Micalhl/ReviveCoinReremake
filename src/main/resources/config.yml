@@ -1,0 +1,30 @@
+Play:
+  No-Coins-Take-Money: 500
+  Buy-Coins-Take-Money: 500
+  Respawn-Count-Time: 5
+  New-Player-Coins: 9
+  Before-Respawn-Game-Mode: "SPECTATOR"
+  After-Respawn-Game-Mode: "SURVIVAL"
+  Warp: "warp"
+Mysql:
+  Host: "localhost"
+  Port: 3306
+  Database: "test"
+  Username: "tester"
+  Password: "tester"
+  UseSSL: false
+ReviveCoin:
+  Type: "GOLD_NUGGET"
+  Display-Name: "&a✔ 复活粒"
+  Lore:
+    - " "
+    - "&7复活粒"
+    - "&7右键可以获得一枚复活币"
+    - "&7不过因为防止出现BUG"
+    - "&7每次只能用一粒"
+    - " "
+    - "§a▶ 点击使用"
+Server:
+  Use-BungeeCord: true
+  Survival-Server-Name: "生存服"
+  Jail-Server-Name: "监狱服"
