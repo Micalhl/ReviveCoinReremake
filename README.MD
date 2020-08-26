@@ -21,7 +21,7 @@
 ## TODO
 - 本地存储
 - 优化代码
-- 更新PAPI
+- 更新PAPI √
 
 ## 开发者API
 - CoinAPI 您可以自己新建一个类来实现CoinAPI, 然后自己写方法<br>

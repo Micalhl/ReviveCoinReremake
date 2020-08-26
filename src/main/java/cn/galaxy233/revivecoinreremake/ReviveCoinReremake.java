@@ -1,7 +1,7 @@
 package cn.galaxy233.revivecoinreremake;
 
 import cn.galaxy233.revivecoinreremake.command.ReviveCoinCommand;
-import cn.galaxy233.revivecoinreremake.hooks.Placeholders;
+import cn.galaxy233.revivecoinreremake.hooks.PlaceholderHook;
 import cn.galaxy233.revivecoinreremake.listener.LoginListener;
 import cn.galaxy233.revivecoinreremake.listener.RespawnListener;
 import cn.galaxy233.revivecoinreremake.listener.ReviveCoinListener;
@@ -35,7 +35,8 @@ public final class ReviveCoinReremake extends PPlugin {
     protected void load() {
         getLogger().info("正在加载ReviveCoinReremake, 版本" + getDescription().getVersion());
 
-        Placeholders.hook();
+        //Placeholders.hook();
+        new PlaceholderHook(this).register();
         vaultUtil = new VaultUtil(this, true);
         registerCommand(new ReviveCoinCommand(this, "revivecoin"));
         listen(pluginManager -> {
@@ -61,7 +62,8 @@ public final class ReviveCoinReremake extends PPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        Placeholders.unhook();
+        //Placeholders.unhook();
+        new PlaceholderHook(this).unregister();
         getLogger().info("插件已卸载");
     }
 }

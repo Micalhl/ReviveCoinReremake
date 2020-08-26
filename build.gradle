@@ -32,7 +32,7 @@ dependencies {
     compileOnly 'com.destroystokyo.paper:paper-api:1.15.2-R0.1-SNAPSHOT'
     compileOnly 'com.zaxxer:HikariCP:3.4.5'
     compileOnly(fileTree("lib").include("*.jar"))
-    compileOnly 'me.clip:placeholderapi:2.10.6'
+    compileOnly 'me.clip:placeholderapi:2.10.9'
     compileOnly 'com.github.Polar-Pumpkin:ParrotX:fac1b9476e'
     compileOnly 'org.projectlombok:lombok:1.18.12'
 }

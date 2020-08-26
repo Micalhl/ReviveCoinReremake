@@ -1,16 +1,12 @@
-
-
-#         Powered by TabooLib 5.32         #
-
-
-name: ${name}
-main: ${main}
-main-transfer: ${mainTransfer}
-version: ${version}
-author: ${author}
+name: ReviveCoinReremake
+main: cn.galaxy233.revivecoinreremake.ReviveCoinReremake
+version: @version@
 
 api-version: 1.13
 
 depend: [Vault, ParrotX, MicalLib]
 softdepend: [PlaceholderAPI]
 authors: [Mical]
+
+commands:
+  revivecoin:
