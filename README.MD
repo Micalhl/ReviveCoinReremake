@@ -15,17 +15,16 @@
 - 支持服务端版本: `spigot/... 1.13-1.16`
 - 当前插件版本: `2.2-SNAPSHOT`
 - 
-- ParrotX版本: `1.2.1-Alpha`
+- ParrotX版本: `1.3.6-Alpha`
 - I18n信息:
-- -> 版本: `[EP's Locale Tool] v2.1`
+- -> 版本: `[EP's Locale Tool] v3.1`
 - -> 绑定插件: `ReviveCoinReremake`
 - -> 语言: `Chinese`
 
 ## 插件信息
 - 作者: Mical
 - ParrotX作者: EntityParrot
-- MicalLib作者: Mical
-- 插件依赖: [Vault, ParrotX, MicalLib]
+- 插件依赖: [Vault]
 - 插件软依赖: [PlaceholderAPI]
 
 ## TODO
@@ -34,11 +33,10 @@
 - 更新PAPI √
 
 ## 开发者API
-- CoinAPI 您可以自己新建一个类来实现CoinAPI, 然后自己写方法<br>
 - ReviveCoinAddEvent 事件, 玩家复活币增加事件,`player`玩家对象,`coins`增加的复活币数量<br>
 - ReviveCoinReduceEvent 事件, 玩家复活币减少事件,`player`玩家对象,`coins`减少的复活币数量<br>
 - ReviveCoinGiveOtherEvent 事件, 玩家赠与他人复活币事件,`user1`赠予者,`user2`被赠予者,`coins`赠予复活币数量<br>
-- ReviveCoin:<br>
+- CoinUtils:<br>
 
 | 方法名  | 描述 |
 |----: | :---- |
