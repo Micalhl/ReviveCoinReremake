@@ -1,8 +1,8 @@
 name: ReviveCoinReremake
-main: cn.galaxy233.revivecoinreremake.ReviveCoinReremake
+main: me.mical.revivecoinreremake.ReviveCoinReremake
 version: @version@
 
-api-version: 1.13
+api-version: "1.13"
 
 depend: [Vault, ParrotX, MicalLib]
 softdepend: [PlaceholderAPI]
