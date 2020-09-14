@@ -9,8 +9,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class LoginListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-
         DatabaseUtils.preInitializePlayerData(event.getPlayer(), event.getPlayer().getUniqueId(), ConfigManager.NEW_PLAYER_COINS);
-
     }
 }

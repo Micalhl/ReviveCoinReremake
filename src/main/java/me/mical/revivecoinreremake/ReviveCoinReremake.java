@@ -1,7 +1,7 @@
 package me.mical.revivecoinreremake;
 
 import me.mical.revivecoinreremake.command.ReviveCoinCommand;
-import me.mical.revivecoinreremake.hooks.PlaceholderHook;
+import me.mical.revivecoinreremake.hooks.ReviveCoinExpansion;
 import me.mical.revivecoinreremake.listener.LoginListener;
 import me.mical.revivecoinreremake.listener.RespawnListener;
 import me.mical.revivecoinreremake.listener.ReviveCoinListener;
@@ -40,13 +40,13 @@ public class ReviveCoinReremake extends PPlugin {
 
     @Override
     protected void load() {
-        new PlaceholderHook(this).hook();
+        registerExpansion(new ReviveCoinExpansion());
 
         vaultUtil = new VaultUtil(this, true);
         registerCommand(new ReviveCoinCommand(this, "revivecoin"));
         listen(pluginManager -> {
             pluginManager.registerEvents(new LoginListener(), this);
-            pluginManager.registerEvents(new RespawnListener(), this);
+            pluginManager.registerEvents(new RespawnListener(this), this);
             pluginManager.registerEvents(new ReviveCoinListener(), this);
         });
 
@@ -66,8 +66,6 @@ public class ReviveCoinReremake extends PPlugin {
     @Override
     public void onDisable() {
         super.onDisable();
-
-        new PlaceholderHook(this).unhook();
 
         lang.log.info("卸载插件成功...");
     }

@@ -57,10 +57,6 @@ public class DatabaseUtils {
         }
     }
 
-    public static boolean hasCoins(UUID uuid) {
-        return getCoins(uuid) > 0;
-    }
-
     public static void preInitializePlayerData(Player user, UUID uuid, int defaultCoins) {
         try (Connection connection = getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("SELECT `coins` FROM `revivecoin` WHERE `uuid` = ?")) {
@@ -101,7 +97,7 @@ public class DatabaseUtils {
         return 0;
     }
 
-    public static boolean setCoins(UUID uuid, int coins) {
+    public static void setCoins(UUID uuid, int coins) {
         try (Connection connection = getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
                     "UPDATE `revivecoin` SET `coins` = ? WHERE `uuid` = ?"
@@ -110,10 +106,13 @@ public class DatabaseUtils {
                 statement.setString(2, uuid.toString());
                 statement.executeUpdate();
             }
-            return true;
         } catch (SQLException exception) {
             logger.log(Level.SEVERE, "SQL Exception: [Set Coins]", exception);
-            return false;
         }
+    }
+
+    public static void setCoins(UUID user, UUID target, int coins) {
+        setCoins(user, getCoins(user) - coins);
+        setCoins(target, getCoins(target) + coins);
     }
 }

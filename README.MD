@@ -13,9 +13,9 @@
 ## 版本信息
 
 - 支持服务端版本: `spigot/... 1.13-1.16`
-- 当前插件版本: `2.2-SNAPSHOT`
+- 当前插件版本: `2.3-Alpha`
 - 
-- ParrotX版本: `1.3.6-Alpha`
+- ParrotX版本: `1.3.8-Alpha`
 - I18n信息:
 - -> 版本: `[EP's Locale Tool] v3.1`
 - -> 绑定插件: `ReviveCoinReremake`
@@ -33,9 +33,7 @@
 - 更新PAPI √
 
 ## 开发者API
-- ReviveCoinAddEvent 事件, 玩家复活币增加事件,`player`玩家对象,`coins`增加的复活币数量<br>
-- ReviveCoinReduceEvent 事件, 玩家复活币减少事件,`player`玩家对象,`coins`减少的复活币数量<br>
-- ReviveCoinGiveOtherEvent 事件, 玩家赠与他人复活币事件,`user1`赠予者,`user2`被赠予者,`coins`赠予复活币数量<br>
+- ReviveCoinEvent 事件, 玩家复活币事件, 有两个构造器, 一个是为`add`和`take`做准备一个是为`give`做准备, `type`为类型
 - CoinUtils:<br>
 
 | 方法名  | 描述 |

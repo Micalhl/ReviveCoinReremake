@@ -13,56 +13,50 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.serverct.parrot.parrotx.PPlugin;
 import org.serverct.parrot.parrotx.utils.i18n.I18n;
 
+import java.util.Objects;
+
 public class RespawnListener implements Listener {
+
+    private final PPlugin plugin;
+
+    public RespawnListener(PPlugin plugin) {
+        this.plugin = plugin;
+    }
+
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        PPlugin plugin = ReviveCoinReremake.getInst();
-        Player user = event.getPlayer();
-        int current_coins = CoinUtils.get(user);
-        user.setGameMode(GameMode.valueOf(ConfigManager.BEFORE_RESPAWN_GAME_MODE));
-        if (current_coins == 0) {
-            if (ReviveCoinReremake.getVaultUtil().getBalances(user) >= ConfigManager.NO_COINS_TAKE_MONEY) {
-                I18n.send(user, plugin.getLang().data.get(plugin.localeKey, I18n.Type.WARN, "Lang", "have-no-enough-coins").replace("{money}", String.valueOf(ConfigManager.NO_COINS_TAKE_MONEY)));
-                new BukkitRunnable() {
-                    int time = ConfigManager.RESPAWN_COUNT_TIME;
-                    @Override
-                    public void run() {
-                            ReviveCoinReremake.getVaultUtil().take(user, ConfigManager.NO_COINS_TAKE_MONEY);
-                            I18n.send(user, plugin.getLang().data.get(plugin.localeKey, I18n.Type.INFO, "Lang", "prepare-for-respawn").replace("{time}", String.valueOf(time)));
-                            time--;
-                            if (time == 0) {
-                                user.setGameMode(GameMode.valueOf(ConfigManager.AFTER_RESPAWN_GAME_MODE));
-                                I18n.send(user, plugin.getLang().data.get(plugin.localeKey, I18n.Type.INFO, "Lang", "successful-respawn"));
-                                cancel();
-                            }
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                Player user = event.getPlayer();
+                int time = ConfigManager.RESPAWN_COUNT_TIME;
+                user.setGameMode(GameMode.valueOf(ConfigManager.BEFORE_RESPAWN_GAME_MODE));
+                if (CoinUtils.has(user, 1)) {
+                    CoinUtils.take(user, 1);
+                    time--;
+                    if (Objects.equals(time, 0)) {
+                        user.setGameMode(GameMode.valueOf(ConfigManager.AFTER_RESPAWN_GAME_MODE));
+                        I18n.send(user, plugin.getLang().data.get(plugin.localeKey , I18n.Type.INFO, "Lang", "successful-respawn"));
+                        cancel();
                     }
-                }.runTaskTimer(plugin, 0L, 20L);
-            } else {
-                I18n.send(user, plugin.getLang().data.get(plugin.localeKey, I18n.Type.WARN, "Lang", "prepare-warp-because-no-coins-or-money"));
-                new BukkitRunnable() {
-                    @Override
-                    public void run() {
+                } else {
+                    if (ReviveCoinReremake.getVaultUtil().getBalances(user) >= ConfigManager.NO_COINS_TAKE_MONEY) {
+                        I18n.send(user, plugin.getLang().data.get(plugin.localeKey, I18n.Type.WARN, "Lang", "have-no-enough-coins").replace("{money}", String.valueOf(ConfigManager.NO_COINS_TAKE_MONEY)));
+                        time--;
+                        if (Objects.equals(time, 0)) {
+                            user.setGameMode(GameMode.valueOf(ConfigManager.AFTER_RESPAWN_GAME_MODE));
+                            I18n.send(user, plugin.getLang().data.get(plugin.localeKey, I18n.Type.INFO, "Lang", "successful-respawn"));
+                            cancel();
+                        }
+                    } else {
+                        I18n.send(user, plugin.getLang().data.get(plugin.localeKey, I18n.Type.WARN, "Lang", "prepare-warp-because-no-coins-or-money"));
                         WarpUtils.teleportWarp(user, ConfigManager.WARP);
                         I18n.send(user, plugin.getLang().data.get(plugin.localeKey, I18n.Type.INFO, "Lang", "successful-teleport"));
                         user.setGameMode(GameMode.valueOf(ConfigManager.AFTER_RESPAWN_GAME_MODE));
                         cancel();
                     }
-                }.runTaskTimer(plugin, 0L, 20L);
-            }
-        } else {
-            CoinUtils.take(user, 1);
-            new BukkitRunnable() {
-                int time = ConfigManager.RESPAWN_COUNT_TIME;
-                @Override
-                public void run() {
-                    time--;
-                    if (time == 0) {
-                        user.setGameMode(GameMode.valueOf(ConfigManager.AFTER_RESPAWN_GAME_MODE));
-                        I18n.send(user, plugin.getLang().data.get(plugin.localeKey , I18n.Type.INFO, "Lang", "successful-respawn"));
-                        cancel();
-                    }
                 }
-            }.runTaskTimer(plugin, 0L, 20L);
-        }
+            }
+        }.runTaskTimer(plugin, 0L, 20L);
     }
 }

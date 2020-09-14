@@ -5,7 +5,7 @@
 
   <groupId>me.mical</groupId>
   <artifactId>ReviveCoinReremake</artifactId>
-  <version>2.2-SNAPSHOT</version>
+  <version>2.3-Alpha</version>
 
   <packaging>jar</packaging>
 
@@ -87,7 +87,7 @@
     <dependency>
       <groupId>com.github.Polar-Pumpkin</groupId>
       <artifactId>ParrotX</artifactId>
-      <version>4792b84c2e</version>
+      <version>5af8353cea</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

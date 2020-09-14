@@ -1,8 +1,8 @@
 Plugin:
-  Prefix: "&9&l复活币系统"
-  INFO: "&a>> "
-  WARN: "&e>> "
-  ERROR: "&c>> "
+  Prefix: "&7[&9&l复活币&7]&r "
+  INFO: "&7[&a*&7]&r "
+  WARN: "&7[&e*&7]&r "
+  ERROR: "&7[&c!&7]&r  "
 Lang:
   new-player-gived-coins: "欢迎您,系统赠送了您&c{coins}&7枚复活币."
   successful-buy-coin: "购买成功, 您已为&c{0}&7购买&c{1}&7枚复活币，您当前剩余&c{2}&7金币."

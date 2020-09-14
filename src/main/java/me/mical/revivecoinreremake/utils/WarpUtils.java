@@ -8,6 +8,7 @@ import org.serverct.parrot.parrotx.PPlugin;
 
 public class WarpUtils {
 
+    @SuppressWarnings("unused")
     public static void teleportWarp(Player user, String paramWarp) {
         PPlugin plugin = ReviveCoinReremake.getInst();
     }

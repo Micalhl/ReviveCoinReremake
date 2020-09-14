@@ -1,30 +1,33 @@
 package me.mical.revivecoinreremake.utils;
 
-import me.mical.revivecoinreremake.event.ReviveCoinAddEvent;
-import me.mical.revivecoinreremake.event.ReviveCoinGiveOtherEvent;
-import me.mical.revivecoinreremake.event.ReviveCoinReduceEvent;
+import me.mical.revivecoinreremake.event.ReviveCoinEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class CoinUtils{
 
     public static void add(Player user, int coins) {
-        DatabaseUtils.setCoins(user.getUniqueId(), get(user) + coins);
-        ReviveCoinAddEvent event = new ReviveCoinAddEvent(user, coins);
+        ReviveCoinEvent event = new ReviveCoinEvent(ReviveCoinEvent.Type.ADD, user, coins);
         Bukkit.getPluginManager().callEvent(event);
+        if (!event.isCancelled()) {
+            DatabaseUtils.setCoins(event.getUser().getUniqueId(), get(event.getUser()) + event.getCoins());
+        }
     }
 
-    public static void give(Player user1, Player user2, int coins) {
-        DatabaseUtils.setCoins(user1.getUniqueId(), get(user1) - coins);
-        DatabaseUtils.setCoins(user2.getUniqueId(), get(user2) + coins);
-        ReviveCoinGiveOtherEvent event = new ReviveCoinGiveOtherEvent(user1, user2, coins);
+    public static void give(Player user, Player target, int coins) {
+        ReviveCoinEvent event = new ReviveCoinEvent(ReviveCoinEvent.Type.GIVE, user, target, coins);
         Bukkit.getPluginManager().callEvent(event);
+        if (!event.isCancelled()) {
+            DatabaseUtils.setCoins(event.getUser().getUniqueId(), event.getTarget().getUniqueId(), event.getCoins());
+        }
     }
 
     public static void take(Player user, int coins) {
-        DatabaseUtils.setCoins(user.getUniqueId(), get(user) - coins);
-        ReviveCoinReduceEvent event = new ReviveCoinReduceEvent(user, coins);
+        ReviveCoinEvent event = new ReviveCoinEvent(ReviveCoinEvent.Type.REDUCE, user, coins);
         Bukkit.getPluginManager().callEvent(event);
+        if (!event.isCancelled()) {
+            DatabaseUtils.setCoins(event.getUser().getUniqueId(), get(event.getUser()) - event.getCoins());
+        }
     }
 
     public static boolean has(Player user, int coins) {
