@@ -13,7 +13,7 @@
 ## 版本信息
 
 - 支持服务端版本: `spigot/... 1.13-1.16`
-- 当前插件版本: `2.3-Alpha`
+- 当前插件版本: `2.5-Alpha`
 - 
 - ParrotX版本: `1.3.8-Alpha`
 - I18n信息:
@@ -26,11 +26,6 @@
 - ParrotX作者: EntityParrot
 - 插件依赖: [Vault]
 - 插件软依赖: [PlaceholderAPI]
-
-## TODO
-- 本地存储
-- 优化代码
-- 更新PAPI √
 
 ## 开发者API
 - ReviveCoinEvent 事件, 玩家复活币事件, 有两个构造器, 一个是为`add`和`take`做准备一个是为`give`做准备, `type`为类型
