@@ -1,5 +1,6 @@
 package me.mical.revivecoinreremake.command.subcommands;
 
+import me.mical.revivecoinreremake.ReviveCoinReremake;
 import me.mical.revivecoinreremake.config.ConfigManager;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -14,8 +15,8 @@ import java.util.Map;
 
 public class GetCmd extends BaseCommand {
 
-    public GetCmd(PPlugin plugin) {
-        super(plugin, "get", 1);
+    public GetCmd() {
+        super(ReviveCoinReremake.getInst(), "get", 1);
         describe("获取指定数量的复活粒");
         perm("ReviveCoin.admin.get");
         mustPlayer(true);

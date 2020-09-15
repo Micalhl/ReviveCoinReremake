@@ -19,3 +19,4 @@ Lang:
   inventory-is-full: "你的背包已满,我们将把复活粒丢在地上."
   successful-get-coin-by-reviveCoin: "成功用复活粒兑换到了&c1&7枚复活币."
   illgeal-argument: "非法参数."
+  successful-set-warp: "你已成功设置监狱坐标点为{0}&7."

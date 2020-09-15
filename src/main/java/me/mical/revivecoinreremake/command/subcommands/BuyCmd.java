@@ -10,8 +10,8 @@ import org.serverct.parrot.parrotx.utils.i18n.I18n;
 
 public class BuyCmd extends BaseCommand {
 
-    public BuyCmd(PPlugin plugin) {
-        super(plugin, "buy", 2);
+    public BuyCmd() {
+        super(ReviveCoinReremake.getInst(), "buy", 2);
         describe("为指定玩家购买指定数量的复活币");
         perm("ReviveCoin.buy");
         mustPlayer(true);

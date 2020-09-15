@@ -1,5 +1,6 @@
 package me.mical.revivecoinreremake.command.subcommands;
 
+import me.mical.revivecoinreremake.ReviveCoinReremake;
 import me.mical.revivecoinreremake.utils.CoinUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -9,8 +10,8 @@ import org.serverct.parrot.parrotx.utils.i18n.I18n;
 
 public class GiveCmd extends BaseCommand {
 
-    public GiveCmd(PPlugin plugin) {
-        super(plugin, "give", 2);
+    public GiveCmd() {
+        super(ReviveCoinReremake.getInst(), "give", 2);
         describe("赠与他人指定数量的复活币");
         perm("ReviveCoin.give");
         mustPlayer(false);

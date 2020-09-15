@@ -1,10 +1,14 @@
 package me.mical.revivecoinreremake.config;
 
+import me.mical.revivecoinreremake.ReviveCoinReremake;
+import org.bukkit.Location;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
-import org.serverct.parrot.parrotx.PPlugin;
 import org.serverct.parrot.parrotx.config.PConfig;
+import org.serverct.parrot.parrotx.utils.ConfigUtil;
 
 import java.io.File;
+import java.util.Objects;
 
 public class ConfigManager extends PConfig {
     public static double NO_COINS_TAKE_MONEY;
@@ -13,8 +17,9 @@ public class ConfigManager extends PConfig {
     public static int NEW_PLAYER_COINS;
     public static String BEFORE_RESPAWN_GAME_MODE;
     public static String AFTER_RESPAWN_GAME_MODE;
-    public static String WARP;
+    public static Location WARP;
 
+    public static boolean ENABLE_MYSQL;
     public static String HOST;
     public static int PORT;
     public static String DATABASE;
@@ -24,8 +29,8 @@ public class ConfigManager extends PConfig {
 
     public static ItemStack REVIVE_COIN;
 
-    public ConfigManager(PPlugin plugin) {
-        super(plugin, "config", "主配置文件");
+    public ConfigManager() {
+        super(ReviveCoinReremake.getInst(), "config", "主配置文件");
     }
 
     @Override
@@ -36,8 +41,8 @@ public class ConfigManager extends PConfig {
         NEW_PLAYER_COINS = getConfig().getInt("Play.New-Player-Coins");
         BEFORE_RESPAWN_GAME_MODE = getConfig().getString("Play.Before-Respawn-Game-Mode");
         AFTER_RESPAWN_GAME_MODE = getConfig().getString("Play.After-Respawn-Game-Mode");
-        WARP = getConfig().getString("Play.Warp");
 
+        ENABLE_MYSQL = getConfig().getBoolean("Mysql.Enable", false);
         HOST = getConfig().getString("Mysql.Host");
         PORT = getConfig().getInt("Mysql.Port");
         DATABASE = getConfig().getString("Mysql.Database");
@@ -46,5 +51,13 @@ public class ConfigManager extends PConfig {
         SSL = getConfig().getBoolean("Mysql.UseSSL");
 
         REVIVE_COIN = getConfig().getItemStack("ReviveCoin");
+
+        WARP = ConfigUtil.getLocation(plugin, Objects.requireNonNull(getConfig().getConfigurationSection("Warp")));
+    }
+
+    public static void setWarp(Location location) {
+        ConfigManager configManager = new ConfigManager();
+        ConfigurationSection section = configManager.getConfig().getConfigurationSection("Warp");
+        ConfigUtil.saveLocation(location, section);
     }
 }

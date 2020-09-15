@@ -1,7 +1,6 @@
 package me.mical.revivecoinreremake.listener;
 
 import me.mical.revivecoinreremake.ReviveCoinReremake;
-import me.mical.revivecoinreremake.utils.WarpUtils;
 import me.mical.revivecoinreremake.config.ConfigManager;
 import me.mical.revivecoinreremake.utils.CoinUtils;
 import org.bukkit.GameMode;
@@ -50,7 +49,7 @@ public class RespawnListener implements Listener {
                         }
                     } else {
                         I18n.send(user, plugin.getLang().data.get(plugin.localeKey, I18n.Type.WARN, "Lang", "prepare-warp-because-no-coins-or-money"));
-                        WarpUtils.teleportWarp(user, ConfigManager.WARP);
+                        user.teleport(ConfigManager.WARP);
                         I18n.send(user, plugin.getLang().data.get(plugin.localeKey, I18n.Type.INFO, "Lang", "successful-teleport"));
                         user.setGameMode(GameMode.valueOf(ConfigManager.AFTER_RESPAWN_GAME_MODE));
                         cancel();
