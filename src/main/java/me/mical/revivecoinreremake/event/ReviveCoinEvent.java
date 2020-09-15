@@ -2,7 +2,7 @@ package me.mical.revivecoinreremake.event;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.bukkit.entity.Player;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -13,17 +13,17 @@ import org.jetbrains.annotations.NotNull;
 public class ReviveCoinEvent extends Event implements Cancellable {
 
     private Type type;
-    private Player user;
-    private Player target;
+    private OfflinePlayer user;
+    private OfflinePlayer target;
     private int coins;
 
-    public ReviveCoinEvent(Type type, Player user, int coins) {
+    public ReviveCoinEvent(Type type, OfflinePlayer user, int coins) {
         this.type = type;
         this.user = user;
         this.coins = coins;
     }
 
-    public ReviveCoinEvent(Type type, Player user, Player target, int coins) {
+    public ReviveCoinEvent(Type type, OfflinePlayer user, OfflinePlayer target, int coins) {
         this.type = type;
         this.user = user;
         this.target = target;

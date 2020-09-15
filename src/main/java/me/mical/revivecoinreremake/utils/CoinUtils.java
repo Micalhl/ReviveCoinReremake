@@ -2,11 +2,11 @@ package me.mical.revivecoinreremake.utils;
 
 import me.mical.revivecoinreremake.event.ReviveCoinEvent;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
+import org.bukkit.OfflinePlayer;
 
-public class CoinUtils{
+public class CoinUtils {
 
-    public static void add(Player user, int coins) {
+    public static void add(OfflinePlayer user, int coins) {
         ReviveCoinEvent event = new ReviveCoinEvent(ReviveCoinEvent.Type.ADD, user, coins);
         Bukkit.getPluginManager().callEvent(event);
         if (!event.isCancelled()) {
@@ -14,7 +14,7 @@ public class CoinUtils{
         }
     }
 
-    public static void give(Player user, Player target, int coins) {
+    public static void give(OfflinePlayer user, OfflinePlayer target, int coins) {
         ReviveCoinEvent event = new ReviveCoinEvent(ReviveCoinEvent.Type.GIVE, user, target, coins);
         Bukkit.getPluginManager().callEvent(event);
         if (!event.isCancelled()) {
@@ -22,7 +22,7 @@ public class CoinUtils{
         }
     }
 
-    public static void take(Player user, int coins) {
+    public static void take(OfflinePlayer user, int coins) {
         ReviveCoinEvent event = new ReviveCoinEvent(ReviveCoinEvent.Type.REDUCE, user, coins);
         Bukkit.getPluginManager().callEvent(event);
         if (!event.isCancelled()) {
@@ -30,11 +30,11 @@ public class CoinUtils{
         }
     }
 
-    public static boolean has(Player user, int coins) {
+    public static boolean has(OfflinePlayer user, int coins) {
         return coins <= get(user);
     }
 
-    public static int get(Player user) {
+    public static int get(OfflinePlayer user) {
         return DatabaseUtils.getCoins(user.getUniqueId());
     }
 }
