@@ -1,8 +1,8 @@
-package me.mical.revivecoinreremake.listener;
+package me.mical.revivecoinreremake.internal.listener;
 
 import me.mical.revivecoinreremake.ReviveCoinReremake;
-import me.mical.revivecoinreremake.config.ConfigManager;
-import me.mical.revivecoinreremake.utils.CoinUtils;
+import me.mical.revivecoinreremake.internal.config.ConfigManager;
+import me.mical.revivecoinreremake.util.Coin;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,8 +30,8 @@ public class RespawnListener implements Listener {
                 Player user = event.getPlayer();
                 int time = ConfigManager.RESPAWN_COUNT_TIME;
                 user.setGameMode(GameMode.valueOf(ConfigManager.BEFORE_RESPAWN_GAME_MODE));
-                if (CoinUtils.has(user, 1)) {
-                    CoinUtils.take(user, 1);
+                if (Coin.has(user, 1)) {
+                    Coin.take(user, 1);
                     time--;
                     if (Objects.equals(time, 0)) {
                         user.setGameMode(GameMode.valueOf(ConfigManager.AFTER_RESPAWN_GAME_MODE));

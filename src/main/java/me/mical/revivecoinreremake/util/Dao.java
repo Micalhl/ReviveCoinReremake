@@ -1,7 +1,7 @@
-package me.mical.revivecoinreremake.utils;
+package me.mical.revivecoinreremake.util;
 
-import me.mical.revivecoinreremake.ReviveCoinReremake;
-import me.mical.revivecoinreremake.config.ConfigManager;
+import lombok.Getter;
+import me.mical.revivecoinreremake.internal.config.ConfigManager;
 import com.zaxxer.hikari.HikariDataSource;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -15,20 +15,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class DatabaseUtils {
+public class Dao {
 
-    private static final PPlugin plugin = ReviveCoinReremake.getInst();
-    private static final Logger logger = plugin.getLogger();
-    private static final HikariDataSource dataSource = setupDatabase();
+    private final PPlugin plugin;
+    @Getter
+    private final HikariDataSource dataSource;
 
-    public static HikariDataSource getDataSource() {
-        return dataSource;
+    public Dao(PPlugin plugin) {
+        this.plugin = plugin;
+        this.dataSource = setupDatabase();
     }
 
-    private static HikariDataSource setupDatabase() {
+    private HikariDataSource setupDatabase() {
         HikariDataSource dataSource = new HikariDataSource();
         String host = ConfigManager.HOST;
         int port = ConfigManager.PORT;
@@ -47,17 +46,17 @@ public class DatabaseUtils {
         return dataSource;
     }
 
-    public static boolean createDatabases() {
+    public boolean createDatabases() {
         try (Connection connection = getDataSource().getConnection()) {
             connection.prepareStatement("CREATE TABLE IF NOT EXISTS revivecoin(`uuid` VARCHAR(255) UNIQUE NOT NULL,`coins` INTEGER DEFAULT NULL,PRIMARY KEY (`uuid`))").execute();
             return true;
         } catch (SQLException exception) {
-            logger.log(Level.SEVERE, "SQL Exception: [Create Database]", exception);
+            plugin.getLang().log.error(I18n.CREATE, "数据库", exception, null);
             return false;
         }
     }
 
-    public static void preInitializePlayerData(Player user, UUID uuid, int defaultCoins) {
+    public void preInitializePlayerData(Player user, UUID uuid, int defaultCoins) {
         try (Connection connection = getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("SELECT `coins` FROM `revivecoin` WHERE `uuid` = ?")) {
                 statement.setString(1, uuid.toString());
@@ -79,11 +78,11 @@ public class DatabaseUtils {
                 }
             }
         } catch (SQLException exception) {
-            logger.log(Level.SEVERE, "SQL Exception: [Pre Initialize Player Data]", exception);
+            plugin.getLang().log.error(I18n.INIT, "数据库", exception, null);
         }
     }
 
-    public static int getCoins(UUID uuid) {
+    public int getCoins(UUID uuid) {
         try (Connection connection = getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("SELECT `coins` FROM `revivecoin` WHERE `uuid` = ?")) {
                 statement.setString(1, uuid.toString());
@@ -92,12 +91,12 @@ public class DatabaseUtils {
                     return resultSet.getInt(1);
             }
         } catch (SQLException exception) {
-            logger.log(Level.SEVERE, "SQL Exception: [Get Coins]", exception);
+            plugin.getLang().log.error(I18n.GET, "数据库", exception, null);
         }
         return 0;
     }
 
-    public static void setCoins(UUID uuid, int coins) {
+    public void setCoins(UUID uuid, int coins) {
         try (Connection connection = getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
                     "UPDATE `revivecoin` SET `coins` = ? WHERE `uuid` = ?"
@@ -107,11 +106,11 @@ public class DatabaseUtils {
                 statement.executeUpdate();
             }
         } catch (SQLException exception) {
-            logger.log(Level.SEVERE, "SQL Exception: [Set Coins]", exception);
+            plugin.getLang().log.error(I18n.SET, "数据库", exception, null);
         }
     }
 
-    public static void setCoins(UUID user, UUID target, int coins) {
+    public void setCoins(UUID user, UUID target, int coins) {
         setCoins(user, getCoins(user) - coins);
         setCoins(target, getCoins(target) + coins);
     }

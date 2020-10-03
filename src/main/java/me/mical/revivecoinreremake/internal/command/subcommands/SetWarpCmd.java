@@ -1,7 +1,7 @@
-package me.mical.revivecoinreremake.command.subcommands;
+package me.mical.revivecoinreremake.internal.command.subcommands;
 
 import me.mical.revivecoinreremake.ReviveCoinReremake;
-import me.mical.revivecoinreremake.config.ConfigManager;
+import me.mical.revivecoinreremake.internal.config.ConfigManager;
 import org.bukkit.Location;
 import org.serverct.parrot.parrotx.command.BaseCommand;
 import org.serverct.parrot.parrotx.utils.BasicUtil;

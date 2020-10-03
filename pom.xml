@@ -35,11 +35,11 @@
           <relocations>
             <relocation>
               <pattern>org.serverct.parrot.parrotx</pattern>
-              <shadedPattern>me.mical.revivecoinreremake.utils.parrotx</shadedPattern>
+              <shadedPattern>me.mical.revivecoinreremake.util.parrotx</shadedPattern>
             </relocation>
             <relocation>
               <pattern>com.zaxxer.hikari</pattern>
-              <shadedPattern>me.mical.revivecoinreremake.utils.hikaricp</shadedPattern>
+              <shadedPattern>me.mical.revivecoinreremake.util.hikaricp</shadedPattern>
             </relocation>
           </relocations>
         </configuration>
@@ -87,7 +87,7 @@
     <dependency>
       <groupId>com.github.Polar-Pumpkin</groupId>
       <artifactId>ParrotX</artifactId>
-      <version>509d07bfe3</version>
+      <version>a7880a0cdf</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

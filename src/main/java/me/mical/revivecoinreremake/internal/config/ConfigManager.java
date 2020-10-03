@@ -1,4 +1,4 @@
-package me.mical.revivecoinreremake.config;
+package me.mical.revivecoinreremake.internal.config;
 
 import me.mical.revivecoinreremake.ReviveCoinReremake;
 import org.bukkit.Location;
@@ -19,7 +19,6 @@ public class ConfigManager extends PConfig {
     public static String AFTER_RESPAWN_GAME_MODE;
     public static Location WARP;
 
-    public static boolean ENABLE_MYSQL;
     public static String HOST;
     public static int PORT;
     public static String DATABASE;
@@ -42,7 +41,6 @@ public class ConfigManager extends PConfig {
         BEFORE_RESPAWN_GAME_MODE = getConfig().getString("Play.Before-Respawn-Game-Mode");
         AFTER_RESPAWN_GAME_MODE = getConfig().getString("Play.After-Respawn-Game-Mode");
 
-        ENABLE_MYSQL = getConfig().getBoolean("Mysql.Enable", false);
         HOST = getConfig().getString("Mysql.Host");
         PORT = getConfig().getInt("Mysql.Port");
         DATABASE = getConfig().getString("Mysql.Database");

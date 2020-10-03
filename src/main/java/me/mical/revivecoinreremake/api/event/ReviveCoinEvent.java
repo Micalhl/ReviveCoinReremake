@@ -1,4 +1,4 @@
-package me.mical.revivecoinreremake.event;
+package me.mical.revivecoinreremake.api.event;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

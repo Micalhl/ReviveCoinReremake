@@ -6,7 +6,6 @@ Play:
   Before-Respawn-Game-Mode: "SPECTATOR"
   After-Respawn-Game-Mode: "SURVIVAL"
 Mysql:
-  Enable: false
   Host: "localhost"
   Port: 3306
   Database: "test"
