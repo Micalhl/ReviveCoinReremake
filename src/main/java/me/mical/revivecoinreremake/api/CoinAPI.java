@@ -16,7 +16,7 @@ public class CoinAPI {
     public CoinAPI(JavaPlugin hookPlugin) {
         this.plugin = ReviveCoinReremake.getInst();
         this.hookPlugin = hookPlugin;
-        plugin.getLang().log.action("关联", hookPlugin.getDescription().getName());
+        plugin.getLang().log.info("已连接 &c" + hookPlugin.getDescription().getName());
     }
 
     /**

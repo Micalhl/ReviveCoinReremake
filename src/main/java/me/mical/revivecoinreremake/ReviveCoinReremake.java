@@ -7,6 +7,8 @@ import me.mical.revivecoinreremake.internal.hooks.ReviveCoinExpansion;
 import me.mical.revivecoinreremake.internal.listener.LoginListener;
 import me.mical.revivecoinreremake.internal.listener.RespawnListener;
 import me.mical.revivecoinreremake.internal.listener.ReviveCoinListener;
+import me.mical.revivecoinreremake.internal.nms.ActionBarManager;
+import me.mical.revivecoinreremake.internal.nms.ActionBarManagerImpl;
 import me.mical.revivecoinreremake.util.Dao;
 import org.bukkit.Bukkit;
 import org.serverct.parrot.parrotx.PPlugin;
@@ -14,9 +16,12 @@ import org.serverct.parrot.parrotx.hooks.VaultUtil;
 import org.serverct.parrot.parrotx.utils.i18n.I18n;
 
 import java.util.Arrays;
+import java.util.Objects;
 
-public class ReviveCoinReremake extends PPlugin {
+public final class ReviveCoinReremake extends PPlugin {
 
+    @Getter
+    private static ActionBarManagerImpl actionBarManager;
     @Getter
     private static Dao dao;
     @Getter
@@ -45,16 +50,25 @@ public class ReviveCoinReremake extends PPlugin {
 
     @Override
     protected void load() {
-
         registerExpansion(new ReviveCoinExpansion());
 
         vaultUtil = new VaultUtil(this, true);
+
         registerCommand(new ReviveCoinCommand());
+
         listen(pluginManager -> {
             pluginManager.registerEvents(new LoginListener(), this);
             pluginManager.registerEvents(new RespawnListener(this), this);
             pluginManager.registerEvents(new ReviveCoinListener(this), this);
         });
+
+        actionBarManager = ActionBarManager.initialize(this);
+
+        if (Objects.isNull(actionBarManager)) {
+            lang.log.error(I18n.INIT, "ActionBarManager", "ActionBarManagerImpl 对象为 null");
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+        }
 
         if (!dao.createDatabases()) {
             lang.log.error(I18n.INIT, "数据库", "初始化失败");

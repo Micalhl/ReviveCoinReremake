@@ -114,5 +114,47 @@
       <version>2.10.9</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>v1_13_R1</groupId>
+      <artifactId>v1_13_R1</artifactId>
+      <version>v1_13_R1</version>
+      <scope>system</scope>
+      <systemPath>${pom.basedir}/libs/spigot-1.13.jar.native.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>v1_13_R2</groupId>
+      <artifactId>v1_13_R2</artifactId>
+      <version>v1_13_R2</version>
+      <scope>system</scope>
+      <systemPath>${pom.basedir}/libs/spigot-1.13.2.jar.native.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>v1_14_R1</groupId>
+      <artifactId>v1_14_R1</artifactId>
+      <version>v1_14_R1</version>
+      <scope>system</scope>
+      <systemPath>${pom.basedir}/libs/spigot-1.14.2.jar.native.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>v1_15_R1</groupId>
+      <artifactId>v1_15_R1</artifactId>
+      <version>v1_15_R1</version>
+      <scope>system</scope>
+      <systemPath>${pom.basedir}/libs/spigot-1.15.2.jar.native.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>v1_16_R1</groupId>
+      <artifactId>v1_16_R1</artifactId>
+      <version>v1_16_R1</version>
+      <scope>system</scope>
+      <systemPath>${pom.basedir}/libs/spigot-1.16.1.jar.native.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>v1_16_R2</groupId>
+      <artifactId>v1_16_R2</artifactId>
+      <version>v1_16_R2</version>
+      <scope>system</scope>
+      <systemPath>${pom.basedir}/libs/spigot-1.16.3.jar.native.jar</systemPath>
+    </dependency>
   </dependencies>
 </project>
