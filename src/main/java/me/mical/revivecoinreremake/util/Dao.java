@@ -72,7 +72,7 @@ public class Dao {
                         TextComponent text = JsonChatUtil.getFromLegacy(message);
                         text.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(I18n.color(
                                 "&7简介 ▶ &c复活币是一种可以让你死而复生的货币.\n" +
-                                        "     ▶ &c如果没有复活币,你将无法复活,灵魂将受到惩罚."))));
+                                        "     ▶ &c如果没有复活币,你将无法复活,灵魂将受到惩处."))));
                         user.spigot().sendMessage(text);
                     }
                 }
